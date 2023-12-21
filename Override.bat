@@ -1,10 +1,15 @@
 @echo off
+REM @author Michael Gantman 
+REM The program, when run, prompts the user to input a directory. It then scans files in the current directory, 
+REM comparing them with those in the specified directory. If a match is found based on file names, 
+REM it overrides the file in the specified directory with the one in the current directory.
+REM Finally, it reports the total number of files overridden before pausing for user interaction.
 
 set Verzeichnis="%~dp0"
 set TempVerzeichnis=NULL
 set /a Zaehler=0
 
-set /p Laufwerk="Gib mir ein Verzeichnis:"
+set /p Laufwerk="Insert a Directory:"
 
 echo -----------------------------------------------
 echo STARTING
@@ -29,7 +34,7 @@ for %%F in ("%Verzeichnis%*") do (
 					copy /y %%F %%S
 					set /a Zaehler+=1
 				) else (
-					REM echo nicht gut diese
+					REM NOTHING
 				)	
     
 			) 
@@ -41,3 +46,4 @@ cd %Verzeichnis%
 echo -----------------------------------------------
 echo Overrode  %Zaehler% Files
 echo -----------------------------------------------
+pause
